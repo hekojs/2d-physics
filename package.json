@@ -1,0 +1,45 @@
+{
+  "name": "@hekojs/2d-physics",
+  "version": "0.0.1",
+  "description": "Heko 2d physics",
+  "main": "lib/",
+  "scripts": {
+    "test": "standard && flow && jest",
+    "watch": "babel ./src --watch --out-dir ./lib",
+    "build": "babel ./src --out-dir ./lib",
+    "relink": "npm link @hekojs/core @hekojs/helpers"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hekojs/2d-physics.git"
+  },
+  "author": "Anael Favre",
+  "license": "MIT",
+  "dependencies": {
+    "@colyseus/schema": "^0.5.39",
+    "events": "^3.1.0",
+    "matter-js": "^0.14.2",
+    "poly-decomp": "^0.3.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.9.5",
+    "babel-plugin-module-resolver": "^4.0.0"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      [
+        "@babel/plugin-proposal-class-properties",
+        {
+          "loose": true
+        }
+      ]
+    ]
+  }
+}
