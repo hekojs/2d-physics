@@ -1,15 +1,29 @@
 import Heko from '@hekojs/core'
 import HekoHelpers from '@hekojs/helpers'
+import Matter from 'matter-js'
 import Physics from '../Components/Physics'
 
 const round = HekoHelpers.Number.round
 
-export default class PhysicsComputePositions extends Heko.System {
+export default class PhysicsPlugin extends Heko.System {
   static queries = {
     entities: { components: [Physics] }
   }
 
-  onTick () {
+  onAdd({ physics }) {
+    this.physics = physics
+  }
+
+  onTick() {
+    this._updateEngine()
+    this._updatePositions()
+  }
+
+  _updateEngine() {
+    Matter.Engine.update(this.physics.matter, 1000 / this.getWorld().ticker.tps())
+  }
+
+  _updatePositions() {
     this.queries.entities.results.forEach(entity => {
       const physics = entity.getComponent(Physics)
 
